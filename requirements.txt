@@ -8,3 +8,4 @@ email-validator
 Flask-Bootstrap
 gunicorn
 google-generativeai
+psycopg2-binary
