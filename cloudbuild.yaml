@@ -10,7 +10,7 @@ steps:
   args:
   - '-c'
   - |
-    JOB_NAME="blog-vibes-migrate-temp-$BUILD_ID" # Use BUILD_ID for uniqueness
+    \$JOB_NAME="blog-vibes-migrate-temp-$BUILD_ID" # Use BUILD_ID for uniqueness
     gcloud run jobs create $JOB_NAME \
       --image=gcr.io/$PROJECT_ID/blog-vibes:$COMMIT_SHA \
       --region=us-central1 \
