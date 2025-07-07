@@ -4,8 +4,6 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'gcr.io/$PROJECT_ID/blog-vibes:$COMMIT_SHA']
 
-  - 'push', 'gcr.io/$PROJECT_ID/blog-vibes:$COMMIT_SHA']
-
 # Step to run database migrations as a one-off execution
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: 'gcloud'
