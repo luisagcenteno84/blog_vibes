@@ -29,4 +29,4 @@ substitutions:
   _CLOUD_SQL_CONNECTION_NAME: 'blog-vibes-465122:us-central1:blog-vibes-db' # REPLACE THIS
   _DB_USER: 'blog_app' # REPLACE THIS
   _DB_PASSWORD: '=M:*/1Y>>FqXu|o&' # REPLACE THIS
-  _DB_NAME: 'blog-vibes-db' # REPLACE THIS
+  _DB_NAME: 'blog_db' # REPLACE THIS
