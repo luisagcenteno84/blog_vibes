@@ -21,4 +21,4 @@ EXPOSE 8080
 
 # Command to run the application
 # Gunicorn is a production-ready WSGI server, recommended for Flask deployments
-CMD gunicorn --bind 0.0.0.0:${PORT} run:app
+CMD gunicorn --bind 0.0.0.0:${PORT} --log-level debug run:app
