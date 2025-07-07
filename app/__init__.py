@@ -16,10 +16,14 @@ def create_app(config_class=Config):
     app.config.from_object(config_class)
     app.secret_key = app.config['SECRET_KEY'] # Set secret key for session
 
-    db.init_app(app)
-    migrate.init_app(app, db)
-    login.init_app(app)
-    bootstrap.init_app(app)
+    try:
+        db.init_app(app)
+        migrate.init_app(app, db)
+        login.init_app(app)
+        bootstrap.init_app(app)
+    except Exception as e:
+        app.logger.error(f"Error initializing database or extensions: {e}")
+        raise # Re-raise the exception to ensure the container fails to start
 
     from app.auth import bp as auth_bp
     app.register_blueprint(auth_bp, url_prefix='/auth')
