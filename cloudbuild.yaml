@@ -4,22 +4,24 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'gcr.io/$PROJECT_ID/blog-vibes:$COMMIT_SHA']
 
-# Step to run database migrations as a one-off execution
+# Step to run database migrations as a temporary Cloud Run Job
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-  entrypoint: 'gcloud'
+  entrypoint: 'bash'
   args:
-  - 'run'
-  - 'jobs'
-  - 'execute'
-  - 'blog-vibes-migrate-one-off' # A name for this one-off execution
-  - '--image=gcr.io/$PROJECT_ID/blog-vibes:$COMMIT_SHA'
-  - '--region=us-central1'
-  - '--add-cloudsql-instance=${_CLOUD_SQL_CONNECTION_NAME}'
-  - '--set-env-vars=DATABASE_URL=postgresql://${_DB_USER}:$(gcloud secrets versions access latest --secret=DB_PASSWORD)@/${_DB_NAME}?host=/cloudsql/${_CLOUD_SQL_CONNECTION_NAME}'
-  - '--set-secrets=SECRET_KEY=SECRET_KEY:latest,GEMINI_API_KEY=GEMINI_API_KEY:latest'
-  - '--command=flask'
-  - '--args=db,upgrade'
-  - '--wait' # Wait for the job to complete
+  - '-c'
+  - |
+    JOB_NAME="blog-vibes-migrate-temp-$BUILD_ID" # Use BUILD_ID for uniqueness
+    gcloud run jobs create $JOB_NAME \
+      --image=gcr.io/$PROJECT_ID/blog-vibes:$COMMIT_SHA \
+      --region=us-central1 \
+      --add-cloudsql-instance=${_CLOUD_SQL_CONNECTION_NAME} \
+      --set-env-vars=DATABASE_URL=postgresql://${_DB_USER}:$(gcloud secrets versions access latest --secret=DB_PASSWORD)@/${_DB_NAME}?host=/cloudsql/${_CLOUD_SQL_CONNECTION_NAME} \
+      --set-secrets=SECRET_KEY=SECRET_KEY:latest,GEMINI_API_KEY=GEMINI_API_KEY:latest \
+      --command=flask \
+      --args="db,upgrade" \
+      --no-traffic # Don't serve traffic, just define the job
+    gcloud run jobs execute $JOB_NAME --wait
+    gcloud run jobs delete $JOB_NAME --quiet # Clean up the temporary job
 
 # Main deployment step
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
