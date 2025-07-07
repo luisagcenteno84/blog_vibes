@@ -1,0 +1,15 @@
+ * Serving Flask app 'run.py'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+127.0.0.1 - - [06/Jul/2025 19:43:13] "GET /index HTTP/1.1" 200 -
+127.0.0.1 - - [06/Jul/2025 19:43:13] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+127.0.0.1 - - [06/Jul/2025 19:43:16] "GET /posts/2 HTTP/1.1" 200 -
+127.0.0.1 - - [06/Jul/2025 19:43:16] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+127.0.0.1 - - [06/Jul/2025 19:43:18] "GET /edit_post/2 HTTP/1.1" 200 -
+127.0.0.1 - - [06/Jul/2025 19:43:18] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+127.0.0.1 - - [06/Jul/2025 19:43:24] "POST /edit_post/2?history={'parts':+['hi+gemini'],+'role':+'user'}&history={'parts':+['Hi+there!+How+can+I+help+you+today?\\n'],+'role':+'model'}&history={'parts':+['not+working?'],+'role':+'user'}&history={'parts':+['"Not+working"+is+a+bit+vague.++To+help+me+understand+what\\'s+not+working,+please+tell+me:\\n\\n*+**What+were+you+trying+to+do?**++(e.g.,+access+a+website,+use+a+specific+feature,+get+an+answer+to+a+question)\\n*+**What+happened+instead?**+(e.g.,+error+message,+blank+screen,+unexpected+results)\\n*+**What+system+are+you+using?**+(e.g.,+web+browser,+mobile+app,+specific+operating+system)\\n*+**Can+you+provide+more+details?**+(e.g.,+screenshots,+error+messages)\\n\\nThe+more+information+you+give+me,+the+better+I+can+assist+you.\\n'],+'role':+'model'}&history={'parts':+['hi+gemini'],+'role':+'user'}&history={'parts':+['Hi+there!++How+can+I+help+you+today?\\n'],+'role':+'model'}&history={'parts':+['hi+gemini'],+'role':+'user'}&history={'parts':+["Hello+again!+What's+on+your+mind?\\n"],+'role':+'model'}&history={'parts':+['hi+gemini'],+'role':+'user'}&history={'parts':+['Hi!++Is+there+anything+I+can+help+you+with+today?\\n'],+'role':+'model'} HTTP/1.1" 200 -
+127.0.0.1 - - [06/Jul/2025 19:43:24] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+127.0.0.1 - - [06/Jul/2025 20:02:50] "GET /index HTTP/1.1" 200 -
+127.0.0.1 - - [06/Jul/2025 20:02:50] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -

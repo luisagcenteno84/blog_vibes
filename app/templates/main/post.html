@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{ post.thumbnail }}" class="img-fluid rounded" alt="{{ post.title }}">
+        </div>
+        <div class="col-md-6">
+            <h1>{{ post.title }}</h1>
+            <p class="text-muted">By {{ post.author.username }} on {{ post.timestamp.strftime('%B %d, %Y') }}</p>
+            <p>
+                {% for tag in post.tags %}
+                    <a href="{{ url_for('main.posts_by_tag', tag_name=tag.name) }}"><span class="badge bg-secondary">{{ tag.name }}</span></a>
+                {% endfor %}
+            </p>
+            <hr>
+            <p>{{ post.body }}</p>
+            <a href="{{ url_for('main.index') }}" class="btn btn-secondary mt-3">Back to Home</a>
+            {% if current_user.is_authenticated and post.author == current_user %}
+                <a href="{{ url_for('main.edit_post', post_id=post.id) }}" class="btn btn-primary mt-3 ms-2">Edit Post</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

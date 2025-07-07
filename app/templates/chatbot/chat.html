@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title text-center">Gemini Chatbot</h1>
+                    <div class="chat-window mb-4" style="height: 400px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px; border-radius: 5px;">
+                        {% if chat_history %}
+                            {% for entry in chat_history %}
+                                <p><strong>You:</strong> {{ entry.user }}</p>
+                                <p><strong>Gemini:</strong> {{ entry.gemini }}</p>
+                                <hr>
+                            {% endfor %}
+                        {% else %}
+                            <p class="text-muted">Start a conversation with Gemini!</p>
+                        {% endif %}
+                    </div>
+                    <form action="" method="post" novalidate>
+                        {{ form.hidden_tag() }}
+                        <div class="mb-3">
+                            {{ form.message.label(class="form-label") }}
+                            {{ form.message(class="form-control", rows=3) }}
+                            {% for error in form.message.errors %}
+                            <div class="invalid-feedback d-block">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        <div class="d-grid">
+                            {{ form.submit(class="btn btn-primary") }}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
