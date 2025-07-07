@@ -15,7 +15,7 @@ steps:
   - '--region'
   - 'us-central1' # You can change this to your desired region
   - '--allow-unauthenticated' # Adjust based on your authentication needs
-  - '--add-cloudsql-instance'
+  - '--add-cloudsql-instances'
   - '${_CLOUD_SQL_CONNECTION_NAME}'
   - '--set-env-vars'
   - 'DATABASE_URL=postgresql://${_DB_USER}:${_DB_PASSWORD}@/${_DB_NAME}?host=/cloudsql/${_CLOUD_SQL_CONNECTION_NAME}'
@@ -28,5 +28,5 @@ options:
 substitutions:
   _CLOUD_SQL_CONNECTION_NAME: 'blog-vibes-465122:us-central1:blog-vibes-db' # REPLACE THIS
   _DB_USER: 'blog_app' # REPLACE THIS
-  _DB_PASSWORD: '' # REPLACE THIS
+  _DB_PASSWORD: 'ob?2lU5@lAz47Jr0' # REPLACE THIS
   _DB_NAME: 'blog-vibes-db' # REPLACE THIS
